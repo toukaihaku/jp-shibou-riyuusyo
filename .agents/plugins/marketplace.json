@@ -1,0 +1,20 @@
+{
+  "name": "toukaihaku-admissions",
+  "interface": {
+    "displayName": "toukaihaku 日本留学工具"
+  },
+  "plugins": [
+    {
+      "name": "jp-admission-suite",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
