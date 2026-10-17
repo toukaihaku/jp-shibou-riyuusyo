@@ -1,15 +1,23 @@
 # 日本留学出愿辅导套件 · jp-admission-suite
 
-**套件版本：v1.3.0**
+**套件版本：v1.4.0**
 
 面向中国留学生本人的日本大学学部申请辅导工具，默认用中文沟通、用日语撰稿。原 `jp-shibou-riyuusyo` 仓库现改为套件，仓库地址保持不变；志望理由书和面试稿分别调用，也可在同一聊天中衔接使用。
 
 | 工具 | 版本 | 用途 |
 | --- | --- | --- |
 | [jp-shibou-riyuusyo](skills/jp-shibou-riyuusyo/SKILL.md) | 1.2 | 从零访谈起草、修改、压缩、换校，以及按真实用纸和分题适配志望理由书 |
-| [jp-mensetsu](skills/jp-mensetsu/SKILL.md) | 1.0.0 | 将已有材料转为面试问答、从零访谈准备回答、修改面试稿及按回答时长压缩 |
+| [jp-mensetsu](skills/jp-mensetsu/SKILL.md) | 1.1.0 | 按完整题目范围访谈并准备面试问答、转换已有素材、修改面试稿及按回答时长压缩 |
 
 两个工具优先复用当前聊天或学生提供的已确认资料，保持经历、专业兴趣、学校选择和进路一致；跨聊天使用时，请重新提供必要材料。面试稿可以单独使用，不必先写完志望理由书。
+
+## v1.4.0 更新
+
+- 面试稿增加完整准备范围：自我介绍、长处短处、来日理由与在日生活、专业动机、学校理由、四年计划、进路、新闻、书籍、最想学的内容、课外活动、其他出愿、日英语能力与提升，以及相近学部的选择区别。详见 [题目与访谈要点](skills/jp-mensetsu/references/interview-topics.md)。
+- 增加日本人朋友有／无、来日前／后及大学院进路等条件分支；升学意向包含本校／他校、研究问题与毕业后打算。
+- 完整稿附针对个人回答的教授追问练习和作答方法；资料分轮补充，不再只准备少量核心题就称为完整稿。
+- 来日理由围绕专业和个人学习条件比较；近期新闻核实来源与日期，书籍按真实阅读情况准备。第一志愿回答以「貴学が第一志望です。合格したら、必ず入学します。」为必备句，提前向学生确认入学意愿；未确认时保留该句并标待确认，不将其省略或擅作本人承诺。
+- 套件升级至 v1.4.0，面试工具升级至 v1.1.0；志望理由书保持 v1.2。
 
 ## v1.3.0 更新
 
@@ -25,7 +33,7 @@
 在支持插件命令的 Codex CLI 中执行：
 
 ```sh
-codex plugin marketplace add toukaihaku/jp-shibou-riyuusyo --ref v1.3.0
+codex plugin marketplace add toukaihaku/jp-shibou-riyuusyo --ref v1.4.0
 codex plugin add jp-admission-suite@toukaihaku-admissions
 ```
 
@@ -39,13 +47,15 @@ codex plugin add jp-admission-suite@toukaihaku-admissions
 
 ```text
 $skill-installer
-请从 https://github.com/toukaihaku/jp-shibou-riyuusyo 的 v1.3.0 标签安装：
+请从 https://github.com/toukaihaku/jp-shibou-riyuusyo 的 v1.4.0 标签安装：
 - skills/jp-shibou-riyuusyo
 - skills/jp-mensetsu
 若已安装志望理由书 v1.2，请保留它，只安装 jp-mensetsu。
 ```
 
 也可只选其中一个路径。安装完成后，在下一轮对话中使用。自 v1.3.0 起，仓库根目录不再放置 `SKILL.md`，安装时请使用上面的子目录；v1.2 及更早的历史标签仍保留原布局。
+
+如果已安装旧版 `jp-mensetsu`，请先备份旧目录，再更新面试工具到本版；安装器不会直接覆盖同名目录。志望理由书 v1.2 无需重复安装。
 
 ## 使用示例
 
@@ -64,6 +74,8 @@ $skill-installer
 每题以大约45秒为练习目标，日语难度适合我自己理解和表达。
 ```
 
+也可直接要求「准备完整面试稿」。工具会先查看 [完整题目范围](skills/jp-mensetsu/references/interview-topics.md)，复用已有信息，再分轮补问所缺材料；尚未提供的信息会标为待补，不会编造读书、朋友或其他出愿经历。完整稿会包含相关追问练习，所有题目都是准备范围，并非学校必考承诺。
+
 已有面试稿时，可指定只改表达、补充内容或缩短时长。面试稿按题组织，不会把整篇志望理由书逐句改成背诵稿；练习问题不代表学校一定会考，估算时长也需计时朗读验证。
 
 ## 目录与运行环境
@@ -77,7 +89,8 @@ skills/
 │   ├── SKILL.md
 │   └── references/form-capacity.md
 └── jp-mensetsu/
-    └── SKILL.md
+    ├── SKILL.md
+    └── references/interview-topics.md
 ```
 
 完整流程需要运行环境能够浏览学校官网、查看学生提供的表格，并运行代码统计字数。`humanizer-jp` 是可选的日语润色搭配，未安装时两个工具也可独立工作，不会自动下载依赖。
@@ -86,6 +99,7 @@ skills/
 
 每次套件升级均添加对应标签和 GitHub Release，记录具体变更并保留历史版本。套件版本表示本次分发包，各工具仅在其自身内容更新时升版。
 
+- [v1.4.0](https://github.com/toukaihaku/jp-shibou-riyuusyo/releases/tag/v1.4.0)：面试工具 v1.1.0，扩充完整题目、条件分支、教授追问及真实材料核实规则。
 - [v1.3.0](https://github.com/toukaihaku/jp-shibou-riyuusyo/releases/tag/v1.3.0)：改为出愿辅导套件，保留志望理由书 v1.2，新增面试稿 v1.0.0。
 - [v1.2](https://github.com/toukaihaku/jp-shibou-riyuusyo/releases/tag/v1.2)：实际用纸与分题适配、上传／代查顺序及版面容量估计。
 - [v1.1](https://github.com/toukaihaku/jp-shibou-riyuusyo/releases/tag/v1.1)：参考篇幅为总起 5%、动机 30%、理由 35%、计划 20%、进路 10%；补充对应年级的ゼミ学习、全文中心轴和学校资源与个人能力需求的联系。
